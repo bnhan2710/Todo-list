@@ -1,0 +1,235 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: Plus Jakarta Sans;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+    text-align: left;
+
+}
+.container{
+    position: absolute;
+    width: 1280px;
+    height: 1024px;
+    left: 19px;
+    top: 15px;
+    background: #FFFFFF;
+
+}
+.main{
+    width: 100%;
+    height: 100%;
+}
+.card{
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+.background{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+.background--layer--orange{
+    position: absolute;
+    left: 845px;
+    width: 500.51px;
+    height: 592px;
+    top: -40px;
+}
+.background--layer--blue{
+/* Group */
+
+    position: absolute;
+    left: -2.88%;
+    top: 44.04%;
+    bottom: -1.48%;
+    width: 569.53px;
+    height: 588.17px;
+}
+.background--layer--circle{
+    position: absolute;
+    left: 80.47%;
+    right: 13.35%;
+    top: 82.13%;
+    bottom: 10.16%;
+    }
+.card{
+/* Auto layout */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px 120px 0px 0px;
+    gap: 120px;
+
+    position: absolute;
+    width: 1024px;
+    height: 700px;
+    left: 136px;
+    top: 158px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 1px 13px rgba(0, 0, 0, 0.18);
+    border-radius: 25px;
+
+
+}
+.img-group{
+    /* Rectangle 5859 */
+
+    position: absolute;
+    width: 507px;
+    height: 700px;
+    left: -1px;
+    top: 0px;
+
+    background: rgba(209, 223, 236, 0.9);
+    border-radius: 24px;
+}    
+.card__left{
+    width: 506px;
+    height: 700px;
+    gap: 0px;
+    opacity: 0px;
+}
+.card__right--loginform{
+    /* Frame 101392 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+padding: 0px;
+gap: 40px;
+
+width: 278px;
+height: 336px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+}
+.card__right--loginform--title{
+    /* Login */ 
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: space-between !important;
+padding: 0px;
+}
+.log{
+    text-align: center;
+    width: 139px;
+    height: 38px;
+    padding: 8px 0px 0px 0px;
+    gap: 0px;
+    border: 0px 0px 2px 0px;
+    opacity: 0px;
+    border-bottom: 2px solid #11698E
+}
+.regis{
+    text-align: center;
+    width: 139px;
+    height: 38px;
+    padding: 8px 0px 0px 0px;
+    gap: 0px;
+    border: 0px 0px 2px 0px;
+    opacity: 0px;
+}
+.card__right--loginform--login{
+    width: 278px;
+    height: 258px;
+    gap: 24px;
+    opacity: 0px;
+}
+
+#mail{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 12px;
+    gap: 4px;
+    width: 278px;
+    height: 38px;
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    border-radius: 2px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin-top: 10px;
+}
+#pass{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 12px;
+    gap: 4px;
+    width: 278px;
+    height: 38px;
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    border-radius: 2px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin-top: 10px;
+}
+#checkbox{
+    display: flex;
+    padding: 0px;
+    gap: 10px;
+    isolation: isolate;
+    width: 16px;
+    height: 16px;
+    background: #FFFFFF;
+    border-radius: 2px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+.checkbox-label{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #000000;
+}
+.remem_pass{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 10px;
+    width: 278px;
+    height: 16px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin-top: 10px;
+}
+.btn--login{
+width: 278px;
+height: 38px;
+padding: 8px 15px 8px 15px;
+gap: 8px;
+background: #00A6DA;
+border-radius: 20px;
+flex: none;
+order: 1;
+flex-grow: 0;
+margin-top: 10px;
+color: #FFFFFF;
+border: none;
+
+}
