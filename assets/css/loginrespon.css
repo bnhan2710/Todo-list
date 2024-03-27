@@ -1,22 +1,8 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-body{
-    font-family: Plus Jakarta Sans;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 22px;
-    text-align: left;
-
-}
+@media screen and (min-width: 1280px){
 .container{
     position: absolute;
     width: 1280px;
     height: 1024px;
-    left: 19px;
-    top: 15px;
     background: #FFFFFF;
 
 }
@@ -231,5 +217,8 @@ flex-grow: 0;
 margin-top: 10px;
 color: #FFFFFF;
 border: none;
-
 }
+.btn--login:hover{
+    background: #006d8e;
+    transition: 0.2s linear;
+}}

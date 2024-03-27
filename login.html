@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="./assets/css/login.css">
+    <!-- <link rel="stylesheet" href="./assets/css/loginrespon.css"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter&family=Kings&family=M+PLUS+Rounded+1c&family=Madimi+One&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
@@ -31,14 +32,18 @@
                         <div class="log" >Login</div>
                         <div class="regis">Register</div>
                     </div>
+                    <!-- Login -->
                     <div class="card__right--loginform--login">
-                        <label for="mail">Email</label><br>
-                        <input type="text" id="mail" placeholder="Enter your email"> <br>
-                        <label for="pass">Password </label><br>
-                        <input type="text" id="pass" placeholder="Enter your password"> <br>
-                        <div class="remem_pass">
+                        <h2 class="alert-error"></h2>
+                        <label class="mail" for="mail">Email</label><br>
+                        <input type="email" id="mail" placeholder="Enter your email"> 
+                        <p class="error-text-mail">Please enter your account!!</p>
+                        <label class="pass" for="pass">Password </label><br>
+                        <input type="password" id="pass" placeholder="Enter your password">
+                        <p class="error-text-pass">Please enter your password!!</p>
+                       <br> <div class="remem_pass">
                         <input id="checkbox" type="checkbox">
-                        <label for="checkbox">Remember me</label>
+                        <label class="checkbox-label" for="checkbox">Remember me</label>
                     </div>
                         <button class="btn--login">LOGIN</button>
                 </div>
@@ -48,4 +53,5 @@
     </div>
     </div>
 </body>
+<script src="./assets/js/login.js"></script>
 </html>

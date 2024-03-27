@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: Plus Jakarta Sans; 
+}
+.container{
+    padding: 25px;
+}
+.img-task{
+    width: 100px;
+    height: 60px;
+}
+.todo__header{
+    width: 20%;
+height: 18px;
+top: 141px;
+left: 48px;
+gap: 0px;
+border-radius: 2px;
+opacity: 0px;
+background: #00A6DA;
+}
