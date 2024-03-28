@@ -4,17 +4,250 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/home.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Kings&family=M+PLUS+Rounded+1c&family=Madimi+One&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+
     <title>Todo List</title>
 </head>
 <body>
     <div class="container">
+        <!-- head of page -->
+        <div class="nav">
             <img class="img-task" src="assets/img/task.png" alt="">
+            <button class="button__new">+ News task</button>
+        </div>
+        <!-- all item -->
         <div class="main">
-            <div class="col-1__todo">
-                <div class="todo__header">
-                    
-                </div>
+            <!-- TODO BOX -->
+            <div class="item col1">
+                <!-- col 1 -->
+                <div class="todo__box">
+                    <!-- head of box -->
+                    <div class="head--box">
+                         <div class="todo__header">
+                          <span class="head--text">Todo</span>
+                         <div class="count todo">3</div>              
+                    </div>
+                 </div>
+                 <!-- content -->
+                 <div class="block__box--item">
+                    <div class="box--item">
+                        <div class="item--title">
+                            <p class="title">Marketing</p>
+                            <div class="edit---delete">
+                            <img class="edit" src="./assets/icon/pen.svg" alt="">
+                            <img class="delete" src="./assets/icon/bin.svg" alt="">
+                             </div>
+                        </div>
+                        <div class="box__item--desc">
+                            <p class="desc">Write SEO article for new product</p>
+                        </div>
+                        <div class="box__item--detail">
+                            <p class="detail">This is an existential moment for effective altruism and the rationalist community writ-large. </p>
+                        </div>
+                        <div class="box__item--datetime">
+                            <img class="clock" src="./assets/icon/clock.svg" alt=""> 
+                            <span class="date">June 30,2022</span>
+                        </div>
+                    </div>
+                 </div>
+                 <div class="block__box--item">
+                    <div class="box--item">
+                        <div class="item--title">
+                            <p class="title">Marketing</p>
+                            <div class="edit---delete">
+                            <img class="edit" src="./assets/icon/pen.svg" alt="">
+                            <img class="delete" src="./assets/icon/bin.svg" alt="">
+                             </div>
+                        </div>
+                        <div class="box__item--desc">
+                            <p class="desc">Write SEO article for new product</p>
+                        </div>
+                        <div class="box__item--detail">
+                            <p class="detail">This is an existential moment for effective altruism and the rationalist community writ-large. </p>
+                        </div>
+                        <div class="box__item--datetime">
+                            <img class="clock" src="./assets/icon/clock.svg" alt=""> 
+                            <span class="date">June 30,2022</span>
+                        </div>
+                    </div>
+                 </div>
+                 <!-- end item box-->
+             </div>
+             
             </div>
-    </div>
+            <div class="item col2">
+                <!-- col 2 -->
+                <div class="todo__box">
+                    <!-- head of box -->
+                    <div class="head--box doing--box">
+                         <div class="todo__header doing--head">
+                          <span class="head--text">Doing</span>
+                         <div class="count doing">3</div>              
+                    </div>
+                 </div>
+                 <!-- content -->
+                 <div class="block__box--item">
+                    <div class="box--item">
+                        <div class="item--title">
+                            <p class="title">Marketing</p>
+                            <div class="edit---delete">
+                            <img class="edit" src="./assets/icon/pen.svg" alt="">
+                            <img class="delete" src="./assets/icon/bin.svg" alt="">
+                             </div>
+                        </div>
+                        <div class="box__item--desc">
+                            <p class="desc">Write SEO article for new product</p>
+                        </div>
+                        <div class="box__item--detail">
+                            <p class="detail">This is an existential moment for effective altruism and the rationalist community writ-large. </p>
+                        </div>
+                        <div class="box__item--datetime">
+                            <img class="clock" src="./assets/icon/clock.svg" alt=""> 
+                            <span class="date">June 30,2022</span>
+                        </div>
+                    </div>
+                 </div>
+                 <div class="block__box--item">
+                    <div class="box--item">
+                        <div class="item--title">
+                            <p class="title">Marketing</p>
+                            <div class="edit---delete">
+                            <img class="edit" src="./assets/icon/pen.svg" alt="">
+                            <img class="delete" src="./assets/icon/bin.svg" alt="">
+                             </div>
+                        </div>
+                        <div class="box__item--desc">
+                            <p class="desc">Write SEO article for new product</p>
+                        </div>
+                        <div class="box__item--detail">
+                            <p class="detail">This is an existential moment for effective altruism and the rationalist community writ-large. </p>
+                        </div>
+                        <div class="box__item--datetime">
+                            <img class="clock" src="./assets/icon/clock.svg" alt=""> 
+                            <span class="date">June 30,2022</span>
+                        </div>
+                    </div>
+                 </div>
+                 <!-- end item box-->
+             </div>
+             
+            </div>
+            <div class="item col3">
+                <!-- col 3 -->
+                <div class="todo__box">
+                    <!-- head of box -->
+                    <div class="head--box completed--box">
+                         <div class="todo__header completed--head">
+                          <span class="head--text">Completed</span>
+                         <div class="count completed">3</div>              
+                    </div>
+                 </div>
+                 <!-- content -->
+                 <div class="block__box--item">
+                    <div class="box--item">
+                        <div class="item--title">
+                            <p class="title">Marketing</p>
+                            <div class="edit---delete">
+                            <img class="edit" src="./assets/icon/pen.svg" alt="">
+                            <img class="delete" src="./assets/icon/bin.svg" alt="">
+                             </div>
+                        </div>
+                        <div class="box__item--desc">
+                            <p class="desc">Write SEO article for new product</p>
+                        </div>
+                        <div class="box__item--detail">
+                            <p class="detail">This is an existential moment for effective altruism and the rationalist community writ-large. </p>
+                        </div>
+                        <div class="box__item--datetime">
+                            <img class="clock" src="./assets/icon/clock.svg" alt=""> 
+                            <span class="date">June 30,2022</span>
+                        </div>
+                    </div>
+                 </div>
+                 <div class="block__box--item">
+                    <div class="box--item">
+                        <div class="item--title">
+                            <p class="title">Marketing</p>
+                            <div class="edit---delete">
+                            <img class="edit" src="./assets/icon/pen.svg" alt="">
+                            <img class="delete" src="./assets/icon/bin.svg" alt="">
+                             </div>
+                        </div>
+                        <div class="box__item--desc">
+                            <p class="desc">Write SEO article for new product</p>
+                        </div>
+                        <div class="box__item--detail">
+                            <p class="detail">This is an existential moment for effective altruism and the rationalist community writ-large. </p>
+                        </div>
+                        <div class="box__item--datetime">
+                            <img class="clock" src="./assets/icon/clock.svg" alt=""> 
+                            <span class="date">June 30,2022</span>
+                        </div>
+                    </div>
+                 </div>
+                 <!-- end item box-->
+             </div>
+             
+            </div>
+            <div class="item col4">
+                <!-- col 4 -->
+                <div class="todo__box">
+                    <!-- head of box -->
+                    <div class="head--box block--head">
+                         <div class="todo__header blocked">
+                          <span class="head--text">Blocked</span>
+                         <div class="count blocked">3</div>              
+                    </div>
+                 </div>
+                 <!-- content -->
+                 <div class="block__box--item">
+                    <div class="box--item">
+                        <div class="item--title">
+                            <p class="title">Marketing</p>
+                            <div class="edit---delete">
+                            <img class="edit" src="./assets/icon/pen.svg" alt="">
+                            <img class="delete" src="./assets/icon/bin.svg" alt="">
+                             </div>
+                        </div>
+                        <div class="box__item--desc">
+                            <p class="desc">Write SEO article for new product</p>
+                        </div>
+                        <div class="box__item--detail">
+                            <p class="detail">This is an existential moment for effective altruism and the rationalist community writ-large. </p>
+                        </div>
+                        <div class="box__item--datetime">
+                            <img class="clock" src="./assets/icon/clock.svg" alt=""> 
+                            <span class="date">June 30,2022</span>
+                        </div>
+                    </div>
+                 </div>
+                 <div class="block__box--item">
+                    <div class="box--item">
+                        <div class="item--title">
+                            <p class="title">Marketing</p>
+                            <div class="edit---delete">
+                            <img class="edit" src="./assets/icon/pen.svg" alt="">
+                            <img class="delete" src="./assets/icon/bin.svg" alt="">
+                             </div>
+                        </div>
+                        <div class="box__item--desc">
+                            <p class="desc">Write SEO article for new product</p>
+                        </div>
+                        <div class="box__item--detail">
+                            <p class="detail">This is an existential moment for effective altruism and the rationalist community writ-large. </p>
+                        </div>
+                        <div class="box__item--datetime">
+                            <img class="clock" src="./assets/icon/clock.svg" alt=""> 
+                            <span class="date">June 30,2022</span>
+                        </div>
+                    </div>
+                 </div>
+                 <!-- end item box-->
+             </div>
+             
+            </div>
+        </div>
+     </div>
 </body>
 </html>

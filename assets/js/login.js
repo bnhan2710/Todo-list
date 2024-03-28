@@ -1,5 +1,7 @@
 let Alert = document.querySelector('.alert-error')
-console.log(Alert)
+let Loading = document.querySelector('.loading')
+//acc:correct_login@example.com
+//pass:C0rr3Ct_P@55w0rd
 //Validate Login
 document.querySelector('.btn--login').addEventListener('click', function(){
     let email = document.querySelector('#mail').value
@@ -24,6 +26,7 @@ document.querySelector('.btn--login').addEventListener('click', function(){
         password: password
     };
     if(email != "" && password != ""){
+        Loading.style.display = 'block'
         fetch('https://recruitment-api.pyt1.stg.jmr.pl/login', {
             method: 'POST',
             headers: {
@@ -33,6 +36,7 @@ document.querySelector('.btn--login').addEventListener('click', function(){
         })
             .then(response => {
                 if (response.ok) {
+                   
                     return response.json();
                 } else {
                     throw new Error('Network response was not ok');
@@ -42,7 +46,8 @@ document.querySelector('.btn--login').addEventListener('click', function(){
                 if (data.status === 'ok') {
                     window.location.href = 'home.html';
                 } else {
-                    Alert.innerText = 'Your account and password are invalid'
+                    Loading.style.display = 'none'
+                    Alert.innerText = 'email or password is incorrect'
                     Alert.classList.add('active')  
                 }
             })
