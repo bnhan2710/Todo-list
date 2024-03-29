@@ -3,7 +3,7 @@ let Loading = document.querySelector('.loading')
 //acc:correct_login@example.com
 //pass:C0rr3Ct_P@55w0rd
 //Validate Login
-document.querySelector('.btn--login').addEventListener('click', function(){
+document.querySelector('.btn--login').addEventListener('click', ()=>{
     let email = document.querySelector('#mail').value
     let password = document.querySelector('#pass').value
     if(email == ""){
@@ -21,7 +21,7 @@ document.querySelector('.btn--login').addEventListener('click', function(){
         document.querySelector('.error-text-pass').style.display = 'none'
         document.getElementById('pass').classList.remove('error_pass')
     }
-    const formData = {
+    const DataPost = {
         login: email,
         password: password
     };
@@ -32,7 +32,7 @@ document.querySelector('.btn--login').addEventListener('click', function(){
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(formData)
+            body: JSON.stringify(DataPost)
         })
             .then(response => {
                 if (response.ok) {
