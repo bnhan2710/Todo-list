@@ -41,6 +41,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    display: none;
 }
 .card__add{
     position: fixed;
@@ -124,8 +125,23 @@ body{
     height: 50px;
 }
 .item{
-    width: 23%;
+    width: 22%;
+    overflow-y: auto; 
+    max-height: 400px; 
+    padding-right: 4px;
 }
+.item::-webkit-scrollbar {
+    width: 6px; 
+}
+
+.item::-webkit-scrollbar-track {
+    background: rgba(27, 151, 234, 0); 
+}
+
+.item::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+
 .todo__header{
     display: flex;
     justify-content: space-between;
@@ -146,6 +162,9 @@ body{
 
 }
 .head--box{
+    position: sticky;
+    top: 0;
+    background-color: #fff;
     width: 100%;
     height: 100%;
     border-bottom: #00A6DA 2px solid;
