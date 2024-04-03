@@ -13,13 +13,13 @@
     <!-- pop up -->
     <div class="popup__add">
         <div class="card__add">
-            <img class="close--add" src="./assets/icon/close.svg" alt="">
+            <img class="close--add" onclick="closePopup()" src="./assets/icon/close.svg" alt="">
             <p class="add__title">Add new todo</p>
             <div class="add__input">
-            <input type="text" id="Category" placeholder="Category Etc Marketing...">
-            <input type="text" id="Title" placeholder="Title">
-            <input type="text" id="Content" placeholder="Content">
-            <button class="submit--btn">Submit</button>
+            <input type="text" id="Category" placeholder="Category Etc Marketing..." required>
+            <input type="text" id="Title"  placeholder="Title" required>
+            <input type="text" id="Content" placeholder="Content" required>
+            <button class="submit--btn" onclick="addTask()">Submit</button>
             </div>
         </div>
     </div>
@@ -27,7 +27,7 @@
         <div class="card__edit">
             <img class="close--add" src="./assets/icon/close.svg" alt="">
             <p class="add__title">Edit Todo</p>  
-            <div class="edit__input">
+            <div class="edit__input">qweqew
             <input type="text" id="Category" class="edit--categary">
             <input type="text" id="Title" class="edit--title">
             <input type="text" id="Content" class="edit--content">
@@ -126,27 +126,6 @@
                         </div>
                     </div>
                  </div>
-                 <div class="block__box--item">
-                    <div class="box--item">
-                        <div class="item--title">
-                            <p class="title">Marketing</p>
-                            <div class="edit---delete">
-                            <img class="edit" src="./assets/icon/pen.svg" alt="">
-                            <img class="delete" src="./assets/icon/bin.svg" alt="">
-                             </div>
-                        </div>
-                        <div class="box__item--desc">
-                            <p class="desc">Write SEO article for new product</p>
-                        </div>
-                        <div class="box__item--detail">
-                            <p class="detail">This is an existential moment for effective altruism and the rationalist community writ-large. </p>
-                        </div>
-                        <div class="box__item--datetime">
-                            <img class="clock" src="./assets/icon/clock.svg" alt=""> 
-                            <span class="date">June 30,2022</span>
-                        </div>
-                    </div>
-                 </div>
                  <!-- end item box-->
              </div>
              
@@ -183,27 +162,6 @@
                         </div>
                     </div>
                  </div>
-                 <div class="block__box--item">
-                    <div class="box--item">
-                        <div class="item--title">
-                            <p class="title">Marketing</p>
-                            <div class="edit---delete">
-                            <img class="edit" src="./assets/icon/pen.svg" alt="">
-                            <img class="delete" src="./assets/icon/bin.svg" alt="">
-                             </div>
-                        </div>
-                        <div class="box__item--desc">
-                            <p class="desc">Write SEO article for new product</p>
-                        </div>
-                        <div class="box__item--detail">
-                            <p class="detail">This is an existential moment for effective altruism and the rationalist community writ-large. </p>
-                        </div>
-                        <div class="box__item--datetime">
-                            <img class="clock" src="./assets/icon/clock.svg" alt=""> 
-                            <span class="date">June 30,2022</span>
-                        </div>
-                    </div>
-                 </div>
                  <!-- end item box-->
              </div>
              
@@ -219,28 +177,7 @@
                     </div>
                  </div>
                  <!-- content -->
-                 <div class="block__box--item block__item">
-                    <div class="box--item">
-                        <div class="item--title">
-                            <p class="title">Marketing</p>
-                            <div class="edit---delete">
-                            <img class="edit" src="./assets/icon/pen.svg" alt="">
-                            <img class="delete" src="./assets/icon/bin.svg" alt="">
-                             </div>
-                        </div>
-                        <div class="box__item--desc">
-                            <p class="desc">Write SEO article for new product</p>
-                        </div>
-                        <div class="box__item--detail">
-                            <p class="detail">This is an existential moment for effective altruism and the rationalist community writ-large. </p>
-                        </div>
-                        <div class="box__item--datetime">
-                            <img class="clock" src="./assets/icon/clock.svg" alt=""> 
-                            <span class="date">June 30,2022</span>
-                        </div>
-                    </div>
-                 </div>
-                 <div class="block__box--item">
+                 <div class="block__box--item blocked__item" ">
                     <div class="box--item">
                         <div class="item--title">
                             <p class="title">Marketing</p>

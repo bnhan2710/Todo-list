@@ -101,7 +101,8 @@ body{
     margin-top: 10px;
     height: 80px;
     border-radius: 4px;       
-    padding: 2px;
+    padding-left: 2px;
+    padding-right: 2px;
 }
 .submit--btn{
     margin-top: 10px;
@@ -299,4 +300,13 @@ body{
     font-weight: 400;
     line-height: 12.6px;
     text-align: left;
+}
+.active__popup{
+    display: flex;
+}
+.error{
+    border: 2px solid red;
+}
+.ok{
+    border: 2px solid green;
 }
