@@ -98,12 +98,14 @@ body{
     padding: 2px;
 }
 #Content{
+    text-align: start;
     margin-top: 10px;
     height: 80px;
     border-radius: 4px;       
     padding-left: 2px;
     padding-right: 2px;
 }
+
 .submit--btn{
     margin-top: 10px;
     border-radius: 4px;

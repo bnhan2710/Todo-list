@@ -25,12 +25,12 @@
     </div>
     <div class="popup__edit">
         <div class="card__edit">
-            <img class="close--add" src="./assets/icon/close.svg" alt="">
+            <img class="close--add" onclick="closeEdit()" src="./assets/icon/close.svg" alt="">
             <p class="add__title">Edit Todo</p>  
-            <div class="edit__input">qweqew
-            <input type="text" id="Category" class="edit--categary">
-            <input type="text" id="Title" class="edit--title">
-            <input type="text" id="Content" class="edit--content">
+            <div class="edit__input">
+            <input type="text" id="Category" class="edit--category" required>
+            <input type="text" id="Title" class="edit--title" required>
+            <input type="text" id="Content" class="edit--content" required>
         </div>
         <div class="select--task">
             <div>
@@ -45,6 +45,10 @@
             <input type="radio" id ="tick--finish">
             <label for="tick--finish">Finished</label>
                 </div>
+                <div>
+                    <input type="radio" id ="tick--blocked">
+                    <label for="tick--blocked">Blocked</label>
+                        </div>
             </div>
             <button class="submit--edit">Submit</button>
         </div>
@@ -177,7 +181,7 @@
                     </div>
                  </div>
                  <!-- content -->
-                 <div class="block__box--item blocked__item" ">
+                 <div class="block__box--item blocked__item">
                     <div class="box--item">
                         <div class="item--title">
                             <p class="title">Marketing</p>
