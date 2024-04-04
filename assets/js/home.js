@@ -15,33 +15,26 @@ let EditBtn = document.querySelector(".submit--edit");
 let inputCategory = document.querySelector("#Category");
 let inputTitle = document.querySelector("#Title");
 let inputContent = document.querySelector("#Content");
-let tickTodo = document.querySelector("#tick--todo");
-let tickDoing = document.querySelector("#tick--doing");
-let tickFinish = document.querySelector("#tick--finish");
-let tickBlocked = document.querySelector("#tick--blocked");
-
+let tickTodoEdit = document.querySelector("#tick--todo");
+let tickDoingEdit = document.querySelector("#tick--doing");
+let tickFinishEdit = document.querySelector("#tick--finish");
+let tickBlockedEdit = document.querySelector("#tick--blocked");
+let CountTodo = document.querySelector(".count__todo");
+let CountDoing = document.querySelector(".count__doing");
+let CountCompleted = document.querySelector(".count__completed");
+let CountBlocked = document.querySelector(".count__blocked");
 
 var Todo = [
     {
         Category: "N",
         Title: "Write SEO article for new product",
         Date: "June 30,2022",
-        Content: "siuuuuu"
-    },
-    {
-        Category: "H",
-        Title: "Write SEO article for new product",
-        Date: "June 30,2022",
-        Content: "hellooooooo"
+        Content: "siuuuuu",
+        DateTime: "12:12:12"
     },
 ];
 
 var Doing = [
-    {
-        Category: "N",
-        Title: "Write SEO article for new product",
-        Content: "zeze"
-    },
     {
         Category: "N",
         Title: "Write SEO article for new product",
@@ -82,10 +75,7 @@ if (localStorage.getItem("Blocked")) {
     Blocked = JSON.parse(localStorage.getItem("Blocked"));
 }
 
-// console.log(Todocontainer);
-// console.log(Doingcontainer);
-// console.log(Completedcontainer);
-// console.log(Blockedcontainer);
+
 // Render
 //Open Popup
 createBtn.addEventListener('click', function () {
@@ -117,7 +107,7 @@ function closePopup() {
 }
 //Close Edit
 function closeEdit() {
-    Editcontainer.classList.toggle('active__popup')
+    Editcontainer.classList.remove('active__popup')
     inputEditCategory.classList.remove("error")
     inputEditContent.classList.remove("error")
     inputEditTitle.classList.remove("error")
@@ -140,8 +130,9 @@ function addTask() {
         Todo.push({
             Category : CategoryValue,
             Title : TitleValue,
-            Content : ContentValue,
+            Content : ContentValue,    
         })
+        
         localStorage.setItem("Todo", JSON.stringify(Todo))
         render()
         closePopup()
@@ -160,31 +151,64 @@ function OnDelete(index,obj){
 }
 
 //Edit
-function OnEdit(index,obj){
+function OnEdit(index, obj) {
     let Arr = window[obj];
     let item = Arr[index];
-    console.log(item.Category);
 
     Editcontainer.classList.toggle('active__popup');
     inputEditCategory.value = item.Category;
     inputEditTitle.value = item.Title;
     inputEditContent.value = item.Content;
+    
+    if (window[obj] === Todo) {
+        tickTodoEdit.checked = true;
+        tickDoingEdit.checked = false;
+        tickFinishEdit.checked = false;
+        tickBlockedEdit.checked = false;
+    } else if (window[obj] === Doing) {
+        tickTodoEdit.checked = false;
+        tickFinishEdit.checked = false;
+        tickBlockedEdit.checked = false;
+        tickDoingEdit.checked = true;
+    } else if (window[obj] === Completed) {
+        tickFinishEdit.checked = true;
+        tickDoingEdit.checked = false;
+        tickTodoEdit.checked = false;
+        tickBlockedEdit.checked = false;
+    } else if (window[obj] === Blocked) {
+        tickBlockedEdit.checked = true;
+        tickDoingEdit.checked = false;
+        tickTodoEdit.checked = false;
+        tickFinishEdit.checked = false;
+    }
 
     EditBtn.addEventListener('click', function () {
         inputEditCategory.classList.remove("error");
         inputEditContent.classList.remove("error");
         inputEditTitle.classList.remove("error");
 
-        if(inputEditCategory.value === ""){
+        if (inputEditCategory.value === "") {
             inputEditCategory.classList.add("error");
         }
-        if(inputEditContent.value === ""){
+        if (inputEditContent.value === "") {
             inputEditContent.classList.add("error");
         }
-        if(inputEditTitle.value === ""){
+        if (inputEditTitle.value === "") {
             inputEditTitle.classList.add("error");
         }
-        if(inputEditCategory.value !== "" && inputEditContent.value !== "" && inputEditTitle.value !== "") {
+        if (inputEditCategory.value !== "" && inputEditContent.value !== "" && inputEditTitle.value !== "") {
+            if(tickTodoEdit.checked == true) {
+                MoveTask(index, obj, "Todo");
+            }
+            else if(tickDoingEdit.checked == true) {
+                MoveTask(index, obj, "Doing");
+            }
+            else if(tickFinishEdit.checked == true) {
+                MoveTask(index, obj, "Completed");
+            }
+            else if(tickBlockedEdit.checked == true) {
+                MoveTask(index, obj, "Blocked");
+            }
             item.Category = inputEditCategory.value;
             item.Title = inputEditTitle.value;
             item.Content = inputEditContent.value;
@@ -193,16 +217,84 @@ function OnEdit(index,obj){
             localStorage.setItem("Completed", JSON.stringify(Completed));
             localStorage.setItem("Blocked", JSON.stringify(Blocked));
             render();
+
             closeEdit();
         }
     });
 }
+// Move Task
+// Move Task
+function MoveTask(index, obj, target) {
+    let sourceArray = window[obj];
+    let targetArray = window[target];
+    if (sourceArray && targetArray) {
+        if (index >= 0 && index < sourceArray.length) {
+            let taskToMove = sourceArray[index];
+            console.log(taskToMove);
+            console.log("Index:", index);
+            if (taskToMove) {
+                sourceArray.splice(index, 1);
+                taskToMove.Category = target.charAt(0).toUpperCase();
+                targetArray.push(taskToMove);
+                localStorage.setItem("Todo", JSON.stringify(Todo));
+                localStorage.setItem("Doing", JSON.stringify(Doing));
+                localStorage.setItem("Completed", JSON.stringify(Completed));
+                localStorage.setItem("Blocked", JSON.stringify(Blocked));
+                render();
+            } 
+}
+    }
+}
+//Count Task
+function CountTask() {
+    CountTodo.innerText = Todo.length;
+    CountDoing.innerText = Doing.length;
+    CountCompleted.innerText = Completed.length;
+    CountBlocked.innerText = Blocked.length;
+}
+setInterval(CountTask, 30);
 
+// Add Event for check
+tickTodoEdit.addEventListener('click', function () {
+    if (tickTodoEdit.checked) {
+        tickTodoEdit.checked = true;
+        tickDoingEdit.checked = false;
+        tickFinishEdit.checked = false;
+        tickBlockedEdit.checked = false;
+    }
+})
 
+tickDoingEdit.addEventListener('click', function () {
+    if (tickDoingEdit.checked) {
+        tickDoingEdit.checked = true;
+        tickTodoEdit.checked = false;
+        tickFinishEdit.checked = false;
+        tickBlockedEdit.checked = false;
+    }
+})
+
+tickFinishEdit.addEventListener('click', function () {
+    if (tickFinishEdit.checked) {
+        tickFinishEdit.checked = true;
+        tickDoingEdit.checked = false;
+        tickTodoEdit.checked = false;
+        tickBlockedEdit.checked = false;
+    }
+})
+
+tickBlockedEdit.addEventListener('click', function () {
+    if (tickBlockedEdit.checked) {
+        tickBlockedEdit.checked = true;
+        tickDoingEdit.checked = false;
+        tickFinishEdit.checked = false;
+        tickTodoEdit.checked = false;
+    }
+})
+//////
+localStorage.clear();
 function render() {
     let itemTodo = Todo.map((item, index) => {
         return `             
-        
         <div class="block__box--item todo__item">
            <div class="box--item">
                <div class="item--title">
@@ -294,7 +386,7 @@ function render() {
             </div>
             <div class="box__item--datetime">
                 <img class="clock" src="./assets/icon/clock.svg" alt=""> 
-                <span class="date">June 30,2022</span>
+                <span class="date"></span>
             </div>
         </div>
      </div>`
