@@ -25,40 +25,27 @@ let CountCompleted = document.querySelector(".count__completed");
 let CountBlocked = document.querySelector(".count__blocked");
 
 var Todo = [
-    {
-        Category: "N",
-        Title: "Write SEO article for new product",
-        Date: "June 30,2022",
-        Content: "siuuuuu",
-        DateTime: "12:12:12"
-    },
+
 ];
 
 var Doing = [
-    {
-        Category: "N",
-        Title: "Write SEO article for new product",
-        Content: "zeze"
-    },
 
 ];
 var Completed = [
-    {
-        Category: "N",
-        Title: "Write SEO article for new product",
-        Content: "zeze"
-    },
 
 ];
 var Blocked = [
-    {
-        Category: "N",
-        Title: "Write SEO article for new product",
-        Content: "zeze"
-    },
 
 ];
 
+var Month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+let currentDate = new Date();
+
+let day = currentDate.getDate();
+let monthIndex = currentDate.getMonth() + 1;
+let month = Month[monthIndex - 1];
+let year = currentDate.getFullYear();
 if (localStorage.getItem("Todo")) {
     Todo = JSON.parse(localStorage.getItem("Todo"));
 }
@@ -75,8 +62,6 @@ if (localStorage.getItem("Blocked")) {
     Blocked = JSON.parse(localStorage.getItem("Blocked"));
 }
 
-
-// Render
 //Open Popup
 createBtn.addEventListener('click', function () {
     Popupcontainer.classList.toggle('active__popup')
@@ -127,12 +112,14 @@ function addTask() {
         let CategoryValue = inputCategory.value
         let TitleValue = inputTitle.value
         let ContentValue = inputContent.value
+        let datetime =  month + ", " + "" + day + " ," + "" + year
         Todo.push({
             Category : CategoryValue,
             Title : TitleValue,
             Content : ContentValue,    
-        })
-        
+            Date : datetime,
+        })     
+        // console.log(Todo[5].Date)
         localStorage.setItem("Todo", JSON.stringify(Todo))
         render()
         closePopup()
@@ -153,8 +140,7 @@ function OnDelete(index,obj){
 //Edit
 function OnEdit(index, obj) {
     let Arr = window[obj];
-    let item = Arr[index];
-
+    let item = Arr[index]; 
     Editcontainer.classList.toggle('active__popup');
     inputEditCategory.value = item.Category;
     inputEditTitle.value = item.Title;
@@ -223,7 +209,6 @@ function OnEdit(index, obj) {
     });
 }
 // Move Task
-// Move Task
 function MoveTask(index, obj, target) {
     let sourceArray = window[obj];
     let targetArray = window[target];
@@ -291,7 +276,7 @@ tickBlockedEdit.addEventListener('click', function () {
     }
 })
 //////
-localStorage.clear();
+// localStorage.clear();
 function render() {
     let itemTodo = Todo.map((item, index) => {
         return `             
@@ -312,7 +297,7 @@ function render() {
                </div>
                <div class="box__item--datetime">
                    <img class="clock" src="./assets/icon/clock.svg" alt=""> 
-                   <span class="date">June 30,2022</span>
+                   <span class="date">${item.Date}</span>
                </div>
            </div>
         </div>`;
@@ -337,7 +322,7 @@ function render() {
             </div>
             <div class="box__item--datetime">
                 <img class="clock" src="./assets/icon/clock.svg" alt=""> 
-                <span class="date">June 30,2022</span>
+                <span class="date">${item.Date}</span>
             </div>
         </div>
      </div>`
@@ -362,7 +347,7 @@ function render() {
             </div>
             <div class="box__item--datetime">
                 <img class="clock" src="./assets/icon/clock.svg" alt=""> 
-                <span class="date">June 30,2022</span>
+                <span class="date">${item.Date}</span>
             </div>
         </div>`
     })
@@ -386,7 +371,7 @@ function render() {
             </div>
             <div class="box__item--datetime">
                 <img class="clock" src="./assets/icon/clock.svg" alt=""> 
-                <span class="date"></span>
+                <span class="date">${item.Date}</span>
             </div>
         </div>
      </div>`
