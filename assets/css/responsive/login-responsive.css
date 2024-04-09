@@ -1,9 +1,21 @@
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 800px){
     .card__left{
         display: none;
     }
     .card{
-        width: 300px;
-        height: 420px;
+        width: 275px;
+        height: 280px;
     }
+    .card::after{
+        background-color: rgba(209, 223, 236, 0.9);
+        border-radius: 18px;
+        content: "";
+        position: absolute;
+        width: 275px;
+        height: 280px;
+        left: 0px;
+        top: 0px;
+        z-index: -10;
+    }
+
 }

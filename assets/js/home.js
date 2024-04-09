@@ -23,7 +23,13 @@ let CountTodo = document.querySelector(".count__todo");
 let CountDoing = document.querySelector(".count__doing");
 let CountCompleted = document.querySelector(".count__completed");
 let CountBlocked = document.querySelector(".count__blocked");
-
+let currentDate = new Date();
+let day = currentDate.getDate();
+let Month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+let monthIndex = currentDate.getMonth() + 1;
+let month = Month[monthIndex - 1];
+let year = currentDate.getFullYear();
+let dragItem = null;
 var Todo = [
 
 ];
@@ -38,14 +44,7 @@ var Blocked = [
 
 ];
 
-var Month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-let currentDate = new Date();
-
-let day = currentDate.getDate();
-let monthIndex = currentDate.getMonth() + 1;
-let month = Month[monthIndex - 1];
-let year = currentDate.getFullYear();
 if (localStorage.getItem("Todo")) {
     Todo = JSON.parse(localStorage.getItem("Todo"));
 }
@@ -211,7 +210,7 @@ function OnEdit(index, obj) {
 // Move Task
 function MoveTask(index, obj, target) {
     let sourceArray = window[obj];
-    let targetArray = window[target];
+    let targetArray = window[target]; 
     if (sourceArray && targetArray) {
         if (index >= 0 && index < sourceArray.length) {
             let taskToMove = sourceArray[index];
@@ -227,9 +226,10 @@ function MoveTask(index, obj, target) {
                 localStorage.setItem("Blocked", JSON.stringify(Blocked));
                 render();
             } 
-}
+        }
     }
 }
+
 //Count Task
 function CountTask() {
     CountTodo.innerText = Todo.length;
@@ -275,12 +275,14 @@ tickBlockedEdit.addEventListener('click', function () {
         tickTodoEdit.checked = false;
     }
 })
-//////
+///Drag and Drop
+
+
 // localStorage.clear();
 function render() {
     let itemTodo = Todo.map((item, index) => {
         return `             
-        <div class="block__box--item todo__item">
+        <div class="block__box--item todo__item ">
            <div class="box--item">
                <div class="item--title">
                    <p class="title">${item.Category}</p>

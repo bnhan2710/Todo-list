@@ -46,13 +46,15 @@ document.querySelector('.btn--login').addEventListener('click', ()=>{
                 if (data.status === 'ok') {
                     window.location.href = 'home.html';
                 } else {
-                    Loading.style.display = 'none'
-                    Alert.innerText = 'email or password is incorrect'
+                    Alert.innerText = '*email or password is incorrect'
                     Alert.classList.add('active')  
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-            });
+            })
+            .finally(() => {
+                Loading.style.display = 'none'
+            })
     }
 })

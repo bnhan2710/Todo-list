@@ -1,5 +1,26 @@
 @media only screen and (max-width: 878px){
     .item{
-        width: 45%;
+        width: 47%;
+    }
+
+}
+@media only screen and (max-width: 600px){
+    .item{
+        width: 35%;
+    }
+    .card__add{
+        width: 90%;
+    }
+    .card__edit{
+        width: 90%;
+    }
+    .main{
+        flex-direction: column;
+    }
+    .item{
+        width: 100%;
+        max-height: 300px;
     }
 }
+
+

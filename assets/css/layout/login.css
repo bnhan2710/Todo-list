@@ -151,7 +151,9 @@ body{
     border-radius: 3px;
     margin-top: 5px; 
 }
-
+.background-image {
+    display: none;
+}
 #checkbox {
     display: flex;
     padding: 0;
