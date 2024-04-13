@@ -9,10 +9,10 @@
         width: 35%;
     }
     .card__add{
-        width: 90%;
+        width: 70%;
     }
     .card__edit{
-        width: 90%;
+        width: 70%;
     }
     .main{
         flex-direction: column;

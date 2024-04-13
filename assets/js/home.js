@@ -1,8 +1,13 @@
 let createBtn = document.querySelector(".button__new");
-let Todocontainer = document.querySelector(".todo__item");
-let Doingcontainer = document.querySelector(".doing__item");
-let Completedcontainer = document.querySelector(".completed__item");
-let Blockedcontainer = document.querySelector(".blocked__item");
+let TodoItems = document.querySelector(".todo__item");
+let DoingItems = document.querySelector(".doing__item");
+let CompletedItems = document.querySelector(".completed__item");
+let BlockedItems = document.querySelector(".blocked__item");
+let TodoContainer = document.querySelector("#todo");
+let DoingContainer = document.querySelector("#doing");
+let CompletedContainer = document.querySelector("#completed");
+let BlockedContainer = document.querySelector("#blocked");
+let TaskContainers = document.querySelector(".task-content");
 let Popupcontainer = document.querySelector(".popup__add");
 let Editcontainer = document.querySelector(".popup__edit");
 let Editmain = document.querySelector(".card__edit");
@@ -29,22 +34,10 @@ let Month = ["January", "February", "March", "April", "May", "June", "July", "Au
 let monthIndex = currentDate.getMonth() + 1;
 let month = Month[monthIndex - 1];
 let year = currentDate.getFullYear();
-let dragItem = null;
-var Todo = [
-
-];
-
-var Doing = [
-
-];
-var Completed = [
-
-];
-var Blocked = [
-
-];
-
-
+var Todo = [];
+var Doing = [];
+var Completed = [];
+var Blocked = [];
 if (localStorage.getItem("Todo")) {
     Todo = JSON.parse(localStorage.getItem("Todo"));
 }
@@ -65,6 +58,7 @@ if (localStorage.getItem("Blocked")) {
 createBtn.addEventListener('click', function () {
     Popupcontainer.classList.toggle('active__popup')
 })
+
 //Prevent Popup
 Popupmain.addEventListener('click', function (event) {
     event.stopPropagation()
@@ -89,24 +83,40 @@ function closePopup() {
     inputContent.classList.remove("error")
     inputTitle.classList.remove("error")
 }
+
 //Close Edit
 function closeEdit() {
     Editcontainer.classList.remove('active__popup')
     inputEditCategory.classList.remove("error")
     inputEditContent.classList.remove("error")
     inputEditTitle.classList.remove("error")
+    EditBtn.classList.remove('move1','move2','move3','move4')
 }
+
 //Add Task
 function addTask() {
+    inputCategory.classList.remove("error","ok")
+    inputContent.classList.remove("error","ok")
+    inputTitle.classList.remove("error","ok")
+    if(inputCategory.value!="") {
+        inputCategory.classList.add("ok")
+    }
+    if(inputContent.value!="") {
+        inputContent.classList.add("ok")
+    }
+    if(inputTitle.value!="") {
+        inputTitle.classList.add("ok")
+    }   
     if (inputCategory.value == "") {
         inputCategory.classList.add("error")
-        }
+    }
     if(inputContent.value == "") {
         inputContent.classList.add("error")
     }
     if(inputTitle.value == "") {
         inputTitle.classList.add("error")
     }
+    
     if(inputCategory.value != "" && inputContent.value != "" && inputTitle.value != "") {
         let CategoryValue = inputCategory.value
         let TitleValue = inputTitle.value
@@ -118,24 +128,25 @@ function addTask() {
             Content : ContentValue,    
             Date : datetime,
         })     
-        // console.log(Todo[5].Date)
         localStorage.setItem("Todo", JSON.stringify(Todo))
         render()
+        inputCategory.classList.remove("error","ok")
+        inputContent.classList.remove("error","ok")
+        inputTitle.classList.remove("error","ok")
         closePopup()
     }
 }
+
 //Delete
 function OnDelete(index,obj){
     let Arr = window[obj];
     Arr.splice(index,1);
-    // console.log('DELETE DI')
     localStorage.setItem("Todo", JSON.stringify(Todo))
     localStorage.setItem("Doing", JSON.stringify(Doing))
     localStorage.setItem("Completed", JSON.stringify(Completed))
     localStorage.setItem("Blocked", JSON.stringify(Blocked))
     render();
 }
-
 //Edit
 function OnEdit(index, obj) {
     let Arr = window[obj];
@@ -171,7 +182,6 @@ function OnEdit(index, obj) {
         inputEditCategory.classList.remove("error");
         inputEditContent.classList.remove("error");
         inputEditTitle.classList.remove("error");
-
         if (inputEditCategory.value === "") {
             inputEditCategory.classList.add("error");
         }
@@ -201,32 +211,29 @@ function OnEdit(index, obj) {
             localStorage.setItem("Doing", JSON.stringify(Doing));
             localStorage.setItem("Completed", JSON.stringify(Completed));
             localStorage.setItem("Blocked", JSON.stringify(Blocked));
+            EditBtn.classList.remove('move1','move2','move3','move4');
             render();
-
             closeEdit();
         }
     });
 }
+
 // Move Task
-function MoveTask(index, obj, target) {
-    let sourceArray = window[obj];
-    let targetArray = window[target]; 
-    if (sourceArray && targetArray) {
-        if (index >= 0 && index < sourceArray.length) {
-            let taskToMove = sourceArray[index];
-            console.log(taskToMove);
-            console.log("Index:", index);
-            if (taskToMove) {
-                sourceArray.splice(index, 1);
-                taskToMove.Category = target.charAt(0).toUpperCase();
-                targetArray.push(taskToMove);
-                localStorage.setItem("Todo", JSON.stringify(Todo));
-                localStorage.setItem("Doing", JSON.stringify(Doing));
-                localStorage.setItem("Completed", JSON.stringify(Completed));
-                localStorage.setItem("Blocked", JSON.stringify(Blocked));
-                render();
-            } 
-        }
+function MoveTask(index, source, target) {
+    let sourceArray = window[source];
+    let targetArray = window[target];
+
+    if (sourceArray && targetArray && index >= 0 && index < sourceArray.length) {
+        let tasksToMove = sourceArray.splice(index);   
+        tasksToMove.forEach(task => {
+            task.Category = target.charAt(0).toUpperCase();
+        });
+        targetArray.push(...tasksToMove);
+        localStorage.setItem("Todo", JSON.stringify(Todo));
+        localStorage.setItem("Doing", JSON.stringify(Doing));
+        localStorage.setItem("Completed", JSON.stringify(Completed));
+        localStorage.setItem("Blocked", JSON.stringify(Blocked));
+        render();
     }
 }
 
@@ -243,6 +250,8 @@ setInterval(CountTask, 30);
 tickTodoEdit.addEventListener('click', function () {
     if (tickTodoEdit.checked) {
         tickTodoEdit.checked = true;
+        EditBtn.classList.remove('move2','move3','move4');
+        EditBtn.classList.add('move1');
         tickDoingEdit.checked = false;
         tickFinishEdit.checked = false;
         tickBlockedEdit.checked = false;
@@ -252,6 +261,8 @@ tickTodoEdit.addEventListener('click', function () {
 tickDoingEdit.addEventListener('click', function () {
     if (tickDoingEdit.checked) {
         tickDoingEdit.checked = true;
+        EditBtn.classList.remove('move1','move3','move4');
+        EditBtn.classList.add('move2');
         tickTodoEdit.checked = false;
         tickFinishEdit.checked = false;
         tickBlockedEdit.checked = false;
@@ -260,7 +271,9 @@ tickDoingEdit.addEventListener('click', function () {
 
 tickFinishEdit.addEventListener('click', function () {
     if (tickFinishEdit.checked) {
-        tickFinishEdit.checked = true;
+        tickFinishEdit.checked = true;      
+        EditBtn.classList.remove('move1', 'move2','move4'); 
+        EditBtn.classList.add('move3');
         tickDoingEdit.checked = false;
         tickTodoEdit.checked = false;
         tickBlockedEdit.checked = false;
@@ -270,20 +283,22 @@ tickFinishEdit.addEventListener('click', function () {
 tickBlockedEdit.addEventListener('click', function () {
     if (tickBlockedEdit.checked) {
         tickBlockedEdit.checked = true;
+        EditBtn.classList.remove('move1', 'move2', 'move3');
+        EditBtn.classList.add('move4');
         tickDoingEdit.checked = false;
         tickFinishEdit.checked = false;
         tickTodoEdit.checked = false;
     }
 })
-///Drag and Drop
 
 
-// localStorage.clear();
+//Render
+
 function render() {
     let itemTodo = Todo.map((item, index) => {
         return `             
-        <div class="block__box--item todo__item ">
-           <div class="box--item">
+        <div class="block__box--item todo__item draggable" draggable="true" onDragStart="DragStart(event,${index},'Todo')">
+        <div class="box--item">
                <div class="item--title">
                    <p class="title">${item.Category}</p>
                    <div class="edit---delete">
@@ -304,10 +319,10 @@ function render() {
            </div>
         </div>`;
     });
-    Todocontainer.innerHTML = itemTodo.join("");
+    TodoItems.innerHTML = itemTodo.join("");
     let itemDoing = Doing.map((item,index) => {
         return `             
-        <div class="block__box--item doing__item">
+        <div class="block__box--item doing__item draggable" onDragStart="DragStart(event,${index},'Doing')">        
         <div class="box--item">
             <div class="item--title">
                 <p class="title">${item.Category}</p>
@@ -329,11 +344,11 @@ function render() {
         </div>
      </div>`
     })
-    Doingcontainer.innerHTML = itemDoing.join("");
+    DoingItems.innerHTML = itemDoing.join("");
     let itemCompleted = Completed.map((item,index) => {
         return `
-        <div class="block__box--item finish__item"></div>   
-        <div class="box--item">
+        <div class="block__box--item completed__item draggable" draggable="true" onDragStart="DragStart(event,${index},'Completed')" >       
+         <div class="box--item">
             <div class="item--title">
                 <p class="title">${item.Category}</p>
                 <div class="edit---delete">
@@ -353,11 +368,11 @@ function render() {
             </div>
         </div>`
     })
-    Completedcontainer.innerHTML = itemCompleted.join("");
+    CompletedItems.innerHTML = itemCompleted.join("");
     let itemBlocked = Blocked.map((item,index) =>{
         return `
-        <div class="block__box--item blocked__item" ">
-        <div class="box--item">
+        <div class="block__box--item blocked__item draggable"  draggable="true" onDragStart="DragStart(event,${index},'Blocked')">      
+          <div class="box--item">
             <div class="item--title">
                 <p class="title">${item.Category}</p>
                 <div class="edit---delete">
@@ -378,6 +393,92 @@ function render() {
         </div>
      </div>`
     })
-    Blockedcontainer.innerHTML = itemBlocked.join("");
+    BlockedItems.innerHTML = itemBlocked.join("");
+    document.dispatchEvent(renderEvent);
 }
+const renderEvent = new Event('renderUpdated');
 render();
+let eventDrag = {
+    index: null,
+    type: null,
+    target: null
+};
+
+// Drag and Drop
+function DragStart(event, index, type) {
+    let target = event.target;
+    eventDrag.index = index;
+    eventDrag.type = type;
+    eventDrag.target = {
+        Category: target.querySelector(".title").innerText,
+        Title: target.querySelector(".desc").innerText,
+        Content: target.querySelector(".detail").innerText,
+        Date: target.querySelector(".date").innerText
+    };
+}
+
+function DragOver(event) {
+    event.preventDefault();
+}
+
+function Drop(event, target) {
+    event.preventDefault();
+    let sourceType = eventDrag.type;
+    let sourceIndex = eventDrag.index;
+    let task;
+
+    switch (sourceType) {
+        case 'Todo':
+            task = Todo.splice(sourceIndex, 1)[0];
+            break;
+        case 'Doing':
+            task = Doing.splice(sourceIndex, 1)[0];
+            break;
+        case 'Completed':
+            task = Completed.splice(sourceIndex, 1)[0];
+            break;
+        case 'Blocked':
+            task = Blocked.splice(sourceIndex, 1)[0];
+            break;
+        default:
+            break;
+    }
+
+    switch (target) {
+        case 'Todo':
+            Todo.push(task);
+
+            break;
+        case 'Doing':
+            Doing.push(task);
+            console.log(Doing);
+
+            break;
+        case 'Completed':
+            Completed.push(task);
+
+            break;
+        case 'Blocked':
+            Blocked.push(task);
+
+            break;
+        default:
+            break;
+    }
+//update local storage
+    localStorage.setItem('Todo', JSON.stringify(Todo));
+    localStorage.setItem('Doing', JSON.stringify(Doing));
+    localStorage.setItem('Completed', JSON.stringify(Completed));
+    localStorage.setItem('Blocked', JSON.stringify(Blocked));
+    render();
+}
+
+TodoContainer.addEventListener('dragover', DragOver);
+DoingContainer.addEventListener('dragover', DragOver);
+CompletedContainer.addEventListener('dragover', DragOver);
+BlockedContainer.addEventListener('dragover', DragOver);
+
+TodoContainer.addEventListener('drop', (event) => Drop(event, 'Todo'));
+DoingContainer.addEventListener('drop', (event) => Drop(event, 'Doing'));
+CompletedContainer.addEventListener('drop', (event) => Drop(event, 'Completed'));
+BlockedContainer.addEventListener('drop', (event) => Drop(event, 'Blocked'));

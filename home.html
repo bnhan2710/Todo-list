@@ -6,6 +6,10 @@
     <link rel="stylesheet" href="./assets/css/layout/home.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter&family=Kings&family=M+PLUS+Rounded+1c&family=Madimi+One&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="icon" href="./assets/img/logosgr.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Inter&family=Kings&family=M+PLUS+Rounded+1c&family=Madimi+One&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="././assets/css/responsive/home-responsive.css">
     <title>Todo List</title>
 </head>
@@ -18,7 +22,7 @@
             <div class="add__input">
             <input type="text" id="Category" placeholder="Category Etc Marketing..." required>
             <input type="text" id="Title"  placeholder="Title" required>
-            <input type="text" id="Content" placeholder="Content" required>
+            <textarea type="textbox" id="Content" placeholder="Content" required></textarea>
             <button class="submit--btn" onclick="addTask()">Submit</button>
             </div>
         </div>
@@ -26,11 +30,11 @@
     <div class="popup__edit">
         <div class="card__edit">
             <img class="close--add" onclick="closeEdit()" src="./assets/icon/close.svg" alt="">
-            <p class="add__title">Edit Todo</p>  
+            <p class="edit__title">Edit Todo</p>  
             <div class="edit__input">
             <input type="text" id="Category" class="edit--category" required>
             <input type="text" id="Title" class="edit--title" required>
-            <input type="text" id="Content" class="edit--content" required>
+            <textarea id="Content" class="edit--content" required></textarea>
         </div>
         <div class="select--task">
             <div>
@@ -64,7 +68,6 @@
             <!-- TODO BOX -->
             <div class="item col1 todo__container">
                 <!-- col 1 -->
-                <div class="todo__box">
                     <!-- head of box -->
                     <div class="head--box">
                          <div class="todo__header">
@@ -73,6 +76,7 @@
                     </div>
                  </div>
                  <!-- content -->
+                 <div class="task-content" id="todo">
                  <div class="block__box--item todo__item">
                     <div class="box--item">
                         <div class="item--title">
@@ -94,13 +98,12 @@
                         </div>
                     </div>
                  </div>
+                </div>
                  <!-- end item box-->
-             </div>
              
             </div>
             <div class="item col2 doing__container">
                 <!-- col 2 -->
-                <div class="todo__box">
                     <!-- head of box -->
                     <div class="head--box doing--box">
                          <div class="todo__header doing--head">
@@ -109,6 +112,7 @@
                     </div>
                  </div>
                  <!-- content -->
+                 <div class="task-content" id="doing">
                  <div class="block__box--item doing__item">
                     <div class="box--item">
                         <div class="item--title">
@@ -130,13 +134,12 @@
                         </div>
                     </div>
                  </div>
+                </div>
                  <!-- end item box-->
-             </div>
              
             </div>
             <div class="item col3 completed__container">
                 <!-- col 3 -->
-                <div class="todo__box">
                     <!-- head of box -->
                     <div class="head--box completed--box">
                          <div class="todo__header completed--head">
@@ -145,6 +148,7 @@
                     </div>
                  </div>
                  <!-- content -->
+                 <div class="task-content" id="completed">
                  <div class="block__box--item completed__item">
                     <div class="box--item">
                         <div class="item--title">
@@ -166,13 +170,12 @@
                         </div>
                     </div>
                  </div>
+                </div>
                  <!-- end item box-->
-             </div>
              
             </div>
             <div class="item col4 block__container">
                 <!-- col 4 -->
-                <div class="todo__box">
                     <!-- head of box -->
                     <div class="head--box block--head">
                          <div class="todo__header blocked">
@@ -181,6 +184,7 @@
                     </div>
                  </div>
                  <!-- content -->
+                 <div class="task-content" id="blocked">
                  <div class="block__box--item blocked__item">
                     <div class="box--item">
                         <div class="item--title">
@@ -202,8 +206,8 @@
                         </div>
                     </div>
                  </div>
+                </div>
                  <!-- end item box-->
-             </div>
              
             </div>
         </div>
