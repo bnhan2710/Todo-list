@@ -1,6 +1,11 @@
 *{
     margin: 0;
     padding: 0;
+    -webkit-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none; 
+    
 }
 body{
     font-family: Plus Jakarta Sans; 
@@ -55,10 +60,17 @@ body{
 }
 .submit--edit{
     width: 100%;
-    margin-top: 5px;
+    margin-top: 10px;
     font-size: 14px;
     font-weight: 600;
+    border-radius: 10px;
+    transition: all 0.3s ease;
 }
+.submit--edit:hover{
+    
+    cursor: pointer;
+}
+
 .card__edit{
     position: fixed;
     width: 450px;
@@ -119,6 +131,7 @@ body{
 }
 input{
     font-family: 'Courier New', Courier, monospace;
+    border: 1px solid black;
 }
 textarea{
     font-family: 'Courier New', Courier, monospace;
@@ -126,6 +139,9 @@ textarea{
     resize: none;
     display: flex;
     flex-wrap: wrap;
+}
+button{
+    border: none;
 }
 .submit--btn{
     margin-top: 10px;
@@ -135,7 +151,7 @@ textarea{
     font-weight: 600;
 }
 .submit--btn:hover{
-    background-color: #69CE7E;
+    background-color: #0082a9;
     transition: 0.3s linear;
 }
 .main{

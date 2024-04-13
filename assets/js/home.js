@@ -53,7 +53,6 @@ if (localStorage.getItem("Completed")) {
 if (localStorage.getItem("Blocked")) {
     Blocked = JSON.parse(localStorage.getItem("Blocked"));
 }
-
 //Open Popup
 createBtn.addEventListener('click', function () {
     Popupcontainer.classList.toggle('active__popup')
@@ -82,6 +81,9 @@ function closePopup() {
     inputCategory.classList.remove("error")
     inputContent.classList.remove("error")
     inputTitle.classList.remove("error")
+    inputCategory.classList.remove("ok")
+    inputContent.classList.remove("ok")
+    inputTitle.classList.remove("ok")
 }
 
 //Close Edit
@@ -90,14 +92,31 @@ function closeEdit() {
     inputEditCategory.classList.remove("error")
     inputEditContent.classList.remove("error")
     inputEditTitle.classList.remove("error")
+    inputEditCategory.classList.remove("ok");
+    inputEditContent.classList.remove("ok");
+    inputEditTitle.classList.remove("ok");
     EditBtn.classList.remove('move1','move2','move3','move4')
 }
-
 //Add Task
+function autoValidate() {
+    if(inputCategory.value != "") { 
+        inputCategory.classList.add("ok")
+    }
+    if(inputContent.value != "") {
+        inputContent.classList.add("ok")
+    }
+    if(inputTitle.value != "") {
+        inputTitle.classList.add("ok")
+    }
+}
+setInterval(autoValidate, 30);
 function addTask() {
-    inputCategory.classList.remove("error","ok")
-    inputContent.classList.remove("error","ok")
-    inputTitle.classList.remove("error","ok")
+    inputCategory.classList.remove("error")
+    inputContent.classList.remove("error")
+    inputTitle.classList.remove("error")
+    inputCategory.classList.remove("ok")
+    inputContent.classList.remove("ok")
+    inputTitle.classList.remove("ok")
     if(inputCategory.value!="") {
         inputCategory.classList.add("ok")
     }
@@ -130,9 +149,12 @@ function addTask() {
         })     
         localStorage.setItem("Todo", JSON.stringify(Todo))
         render()
-        inputCategory.classList.remove("error","ok")
-        inputContent.classList.remove("error","ok")
-        inputTitle.classList.remove("error","ok")
+        inputCategory.classList.remove("error")
+        inputContent.classList.remove("error")
+        inputTitle.classList.remove("error")
+        inputCategory.classList.remove("ok")
+        inputContent.classList.remove("ok")
+        inputTitle.classList.remove("ok")
         closePopup()
     }
 }
@@ -182,15 +204,28 @@ function OnEdit(index, obj) {
         inputEditCategory.classList.remove("error");
         inputEditContent.classList.remove("error");
         inputEditTitle.classList.remove("error");
+        inputEditCategory.classList.remove("ok");
+        inputEditContent.classList.remove("ok");
+        inputEditTitle.classList.remove("ok");
         if (inputEditCategory.value === "") {
             inputEditCategory.classList.add("error");
+        }
+        else if (inputEditCategory.value !== "") {
+            inputEditCategory.classList.add("ok");
         }
         if (inputEditContent.value === "") {
             inputEditContent.classList.add("error");
         }
+        else if (inputEditContent.value !== "") {
+            inputEditContent.classList.add("ok");
+        }
         if (inputEditTitle.value === "") {
             inputEditTitle.classList.add("error");
         }
+        else if (inputEditTitle.value !== "") {
+            inputEditTitle.classList.add("ok");
+        }
+
         if (inputEditCategory.value !== "" && inputEditContent.value !== "" && inputEditTitle.value !== "") {
             if(tickTodoEdit.checked == true) {
                 MoveTask(index, obj, "Todo");
@@ -291,7 +326,6 @@ tickBlockedEdit.addEventListener('click', function () {
     }
 })
 
-
 //Render
 
 function render() {
@@ -322,7 +356,7 @@ function render() {
     TodoItems.innerHTML = itemTodo.join("");
     let itemDoing = Doing.map((item,index) => {
         return `             
-        <div class="block__box--item doing__item draggable" onDragStart="DragStart(event,${index},'Doing')">        
+        <div class="block__box--item doing__item draggable" onDragStart="DragStart(event,${index},'Doing')"  draggable="true">        
         <div class="box--item">
             <div class="item--title">
                 <p class="title">${item.Category}</p>
@@ -451,7 +485,6 @@ function Drop(event, target) {
             break;
         case 'Doing':
             Doing.push(task);
-            console.log(Doing);
 
             break;
         case 'Completed':
@@ -482,3 +515,15 @@ TodoContainer.addEventListener('drop', (event) => Drop(event, 'Todo'));
 DoingContainer.addEventListener('drop', (event) => Drop(event, 'Doing'));
 CompletedContainer.addEventListener('drop', (event) => Drop(event, 'Completed'));
 BlockedContainer.addEventListener('drop', (event) => Drop(event, 'Blocked'));
+// Định nghĩa hàm bôi đen cho tất cả các phần tử
+function highlightAllElements() {
+    var elements = document.querySelectorAll('.box--item');
+    elements.forEach(function(element) {
+        element.classList.add('highlight');
+    });
+}
+
+// Gọi hàm khi trang được tải
+document.addEventListener('DOMContentLoaded', function() {
+    highlightAllElements();
+});

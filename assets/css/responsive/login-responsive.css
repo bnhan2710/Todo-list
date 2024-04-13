@@ -1,10 +1,10 @@
-@media only screen and (max-width: 800px){
+@media only screen and (max-width: 900px){
     .card__left{
         display: none;
     }
     .card{
         width: 275px;
-        height: 280px;
+        height: 400px;
     }
     .card::after{
         background-color: rgba(209, 223, 236, 0.9);
@@ -12,10 +12,17 @@
         content: "";
         position: absolute;
         width: 275px;
-        height: 280px;
+        height: 100%;
         left: 0px;
         top: 0px;
         z-index: -10;
     }
-
+    .card__right--loginform{
+        margin-top: 30px !important;
+    }
+    .img-group-res{
+        transform: translateY(14px);
+        display: block;
+        margin-left: 60px
+    }
 }
