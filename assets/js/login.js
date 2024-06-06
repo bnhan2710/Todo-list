@@ -19,7 +19,7 @@ document.querySelector('.btn--login').addEventListener('click', ()=>{
     }
     else{
         document.querySelector('.error-text-pass').style.display = 'none'
-        document.getElementById('pass').classList.remove('error_pass')
+        document.getElementById('pass').classList.remove('error_pass ')
     }
     const DataPost = {
         login: email,

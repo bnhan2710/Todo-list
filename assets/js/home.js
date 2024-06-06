@@ -97,35 +97,30 @@ function closeEdit() {
     inputEditTitle.classList.remove("ok");
     EditBtn.classList.remove('move1','move2','move3','move4')
 }
-//Add Task
-function autoValidate() {
-    if(inputCategory.value != "") { 
+//check input
+inputCategory.oninput = function(e){
+    if(e.target.value !=""){
         inputCategory.classList.add("ok")
     }
-    if(inputContent.value != "") {
+    else inputCategory.classList.remove("ok")
+}
+inputContent.oninput = (e)=>{
+    if(e.target.value!=""){
         inputContent.classList.add("ok")
     }
-    if(inputTitle.value != "") {
+    else inputContent.classList.remove("ok")
+}
+inputTitle.oninput = (e) =>{
+    if(e.target.value!=""){
         inputTitle.classList.add("ok")
     }
+    else inputTitle.classList.remove("ok")
 }
-setInterval(autoValidate, 30);
+//Add Task
 function addTask() {
     inputCategory.classList.remove("error")
     inputContent.classList.remove("error")
-    inputTitle.classList.remove("error")
-    inputCategory.classList.remove("ok")
-    inputContent.classList.remove("ok")
-    inputTitle.classList.remove("ok")
-    if(inputCategory.value!="") {
-        inputCategory.classList.add("ok")
-    }
-    if(inputContent.value!="") {
-        inputContent.classList.add("ok")
-    }
-    if(inputTitle.value!="") {
-        inputTitle.classList.add("ok")
-    }   
+    inputTitle.classList.remove("error")  
     if (inputCategory.value == "") {
         inputCategory.classList.add("error")
     }
@@ -152,9 +147,6 @@ function addTask() {
         inputCategory.classList.remove("error")
         inputContent.classList.remove("error")
         inputTitle.classList.remove("error")
-        inputCategory.classList.remove("ok")
-        inputContent.classList.remove("ok")
-        inputTitle.classList.remove("ok")
         closePopup()
     }
 }
@@ -515,15 +507,3 @@ TodoContainer.addEventListener('drop', (event) => Drop(event, 'Todo'));
 DoingContainer.addEventListener('drop', (event) => Drop(event, 'Doing'));
 CompletedContainer.addEventListener('drop', (event) => Drop(event, 'Completed'));
 BlockedContainer.addEventListener('drop', (event) => Drop(event, 'Blocked'));
-// Định nghĩa hàm bôi đen cho tất cả các phần tử
-function highlightAllElements() {
-    var elements = document.querySelectorAll('.box--item');
-    elements.forEach(function(element) {
-        element.classList.add('highlight');
-    });
-}
-
-// Gọi hàm khi trang được tải
-document.addEventListener('DOMContentLoaded', function() {
-    highlightAllElements();
-});
